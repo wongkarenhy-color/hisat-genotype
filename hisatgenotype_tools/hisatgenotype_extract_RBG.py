@@ -26,9 +26,9 @@ import re
 import urllib2
 import xml.etree.ElementTree as etree
 from multiprocessing import Pool
-from argparse import ArgumentParser, FileType
-import hisatgenotype_typing_common as typing_common
-import hisatgenotype_args as arguments
+from argparse import ArgumentParser
+import hisatgenotype_modules.hisatgenotype_typing_common as typing_common
+import hisatgenotype_modules.hisatgenotype_args as arguments
 
 # --------------------------------------------------------------------------- #
 # Download RBC data from website                                              #

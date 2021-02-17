@@ -22,12 +22,10 @@
 import os
 import sys
 import subprocess
-import re
 import shutil
-import inspect
-from argparse import ArgumentParser, FileType
-import hisatgenotype_typing_common as typing_common
-import hisatgenotype_args as arguments
+from argparse import ArgumentParser
+import hisatgenotype_modules.hisatgenotype_typing_common as typing_common
+import hisatgenotype_modules.hisatgenotype_args as arguments
 
 # --------------------------------------------------------------------------- #
 #  General Functions                                                          #

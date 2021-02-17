@@ -22,19 +22,18 @@
 import sys
 import os
 import subprocess
-import re
 import datetime
 import traceback
 import glob
 import multiprocessing
 import random
-import hisatgenotype_args as arguments
-import hisatgenotype_typing_common as typing_common
+from datetime import datetime, date
+from argparse import ArgumentParser
 
-from datetime import datetime, date, time
-from argparse import ArgumentParser, FileType
-from hisatgenotype_typing_core import genotyping_locus
-from hisatgenotype_typing_process import extract_reads, extract_vars
+import hisatgenotype_modules.hisatgenotype_args as arguments
+import hisatgenotype_modules.hisatgenotype_typing_common as typing_common
+from hisatgenotype_modules.hisatgenotype_typing_core import genotyping_locus
+from hisatgenotype_modules.hisatgenotype_typing_process import extract_reads, extract_vars
 
 # --------------------------------------------------------------------------- #
 # Auxillary functions for wraper script                                       #
@@ -606,7 +605,8 @@ def typing_process(args):
                              args.verbose_level,
                              args.assembly_verbose,
                              args.out_dir,
-                             debug)
+                             debug,
+                             args.core_fid)
     else:
         log = {} # build log to capture errors
         pool = multiprocessing.Pool(int(args.threads), 
@@ -659,7 +659,8 @@ def typing_process(args):
                             args.verbose_level,
                             args.assembly_verbose,
                             args.out_dir,
-                            debug)
+                            debug,
+                            args.core_fid)
                     )
 
         # Generate Log files for errors

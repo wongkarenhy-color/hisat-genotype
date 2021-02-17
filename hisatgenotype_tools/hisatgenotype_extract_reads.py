@@ -21,11 +21,9 @@
 
 import sys
 import os
-import subprocess
-import re
 from argparse import ArgumentParser, FileType
-from hisatgenotype_typing_process import extract_reads
-import hisatgenotype_args as arguments
+from hisatgenotype_modules.hisatgenotype_typing_process import extract_reads
+import hisatgenotype_modules.hisatgenotype_args as arguments
 
 # --------------------------------------------------------------------------- #
 # This is the Wrapper script that runs the processing code found in           #

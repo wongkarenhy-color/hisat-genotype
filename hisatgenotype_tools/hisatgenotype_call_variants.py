@@ -1,11 +1,8 @@
 #!/usr/bin/env python
 
-import sys, os, subprocess, re
-import itertools
-from multiprocessing import Pool
+import sys, os, subprocess
 from argparse import ArgumentParser
-import hisatgenotype_typing_common as typing_common
-import hisatgenotype_args as arguments
+import hisatgenotype_modules.hisatgenotype_args as arguments
 
 
 """ WORK IN PROGRESS

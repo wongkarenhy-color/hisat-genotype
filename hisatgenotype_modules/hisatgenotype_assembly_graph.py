@@ -27,7 +27,7 @@ import os
 from datetime import datetime, date, time
 from collections import deque
 from copy import deepcopy
-import hisatgenotype_validation_check as validation_check
+import hisatgenotype_modules.hisatgenotype_validation_check as validation_check
 
 """ Flag to turn on file debugging to run sanity checks """
 setting_file = '/'.join(os.path.realpath(__file__).split('/')[:-2])\

@@ -22,14 +22,11 @@
 import sys
 import os
 import subprocess
-import re
 import threading
-import inspect
-import random
 import glob
-from argparse import ArgumentParser, FileType
-import hisatgenotype_typing_common as typing_common
-import hisatgenotype_args as arguments
+from argparse import ArgumentParser
+import hisatgenotype_modules.hisatgenotype_typing_common as typing_common
+import hisatgenotype_modules.hisatgenotype_args as arguments
 
 
 # Platinum genomes - CEPH pedigree (17 family members)

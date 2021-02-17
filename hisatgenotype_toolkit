@@ -22,14 +22,8 @@
 import sys
 import os
 import subprocess
-import re 
-import resource
-import inspect
-import random
-import math
-from datetime import datetime, date, time
-from argparse import ArgumentParser, FileType
-import hisatgenotype_typing_common as typing_common
+
+from argparse import ArgumentParser
 
 # --------------------------------------------------------------------------- #
 # Main function for wrapper that contains all functions                       #

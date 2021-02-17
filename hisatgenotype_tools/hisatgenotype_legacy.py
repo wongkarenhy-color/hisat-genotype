@@ -21,14 +21,11 @@
 
 import sys
 import os
-import subprocess 
-import re
+import subprocess
 import resource
-import inspect, random
-import math
-from datetime import datetime, date, time
-from argparse import ArgumentParser, FileType
-import hisatgenotype_typing_common as typing_common
+from datetime import datetime
+from argparse import ArgumentParser
+import hisatgenotype_modules.hisatgenotype_typing_common as typing_common
 
 
 # --------------------------------------------------------------------------- #

@@ -19,15 +19,13 @@
 # along with HISAT-genotype.  If not, see <http://www.gnu.org/licenses/>.     #
 # --------------------------------------------------------------------------- #
 
-import os
 import sys
 import subprocess
-import re
-import inspect, operator
 from copy import deepcopy
-from argparse import ArgumentParser, FileType
-import hisatgenotype_typing_common as typing_common
-import hisatgenotype_args as arguments
+from argparse import ArgumentParser
+import hisatgenotype_modules.hisatgenotype_typing_common as typing_common
+import hisatgenotype_modules.hisatgenotype_args as arguments
+
 try:
     import openpyxl
 except ImportError:

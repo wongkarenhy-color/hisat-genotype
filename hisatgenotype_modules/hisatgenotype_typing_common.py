@@ -27,10 +27,6 @@ import math
 import random
 import errno
 import json
-from copy import deepcopy
-from datetime import datetime
-import hisatgenotype_typing_process as typing_process
-import hisatgenotype_validation_check as validation_check
 
 """ Flag to turn on file debugging to run sanity checks """
 setting_file = '/'.join(os.path.realpath(__file__).split('/')[:-2])\
@@ -538,6 +534,9 @@ def extract_database_if_not_exists(base,
                                    intra_gap = 50,
                                    partial = True,
                                    verbose = False):
+
+    import hisatgenotype_modules.hisatgenotype_typing_process as typing_process
+
     full_base = ix_dir + "/" + base
     fnames = [full_base + "_backbone.fa",
               full_base + "_sequences.fa",
@@ -570,7 +569,7 @@ def extract_database_if_not_exists(base,
               file=sys.stderr)
 
     if not check_files(fnames):
-        print("Error: hisatgenotype_extract_vars failed!", 
+        print("Error: hisatgenotype_extract_vars failed!",
               file=sys.stderr)
         sys.exit(1)
 
@@ -1669,6 +1668,9 @@ def identify_ambigious_diffs(ref_seq,
                              cmp_list,
                              verbose,
                              debug = False):
+
+    import hisatgenotype_modules.hisatgenotype_validation_check as validation_check
+
     cmp_left      = 0 
     cmp_right     = len(cmp_list) - 1
     left          = cmp_list[0][1]

@@ -19,14 +19,10 @@
 # along with HISAT 2.  If not, see <http://www.gnu.org/licenses/>.            #
 # --------------------------------------------------------------------------- #
 
-import os
-import sys
 import subprocess
 import re
-import inspect
-import operator
-from argparse import ArgumentParser, FileType
-import hisatgenotype_args as arguments
+from argparse import ArgumentParser
+import hisatgenotype_modules.hisatgenotype_args as arguments
 
 # sequences for DNA fingerprinting loci are available at 
 # http://www.cstl.nist.gov/biotech/strbase/seq_ref.htm

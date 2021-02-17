@@ -20,7 +20,8 @@
 # --------------------------------------------------------------------------- #
 
 import sys
-import hisatgenotype_typing_common as typing_common
+
+import hisatgenotype_modules.hisatgenotype_typing_common as typing_common
 
 # --------------------------------------------------------------------------- #
 # Sorting Unit tests                                                          #

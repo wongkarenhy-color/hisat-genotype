@@ -21,13 +21,11 @@
 
 import os
 import sys
-import subprocess
-import re
 import multiprocessing
-from argparse import ArgumentParser, FileType
-from hisatgenotype_typing_process import extract_vars
-import hisatgenotype_typing_common as typing_common
-import hisatgenotype_args as arguments
+from argparse import ArgumentParser
+from hisatgenotype_modules.hisatgenotype_typing_process import extract_vars
+import hisatgenotype_modules.hisatgenotype_typing_common as typing_common
+import hisatgenotype_modules.hisatgenotype_args as arguments
 
 def init(l):
     global lock

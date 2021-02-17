@@ -24,14 +24,13 @@ import os
 import subprocess
 import re
 import random
-import math
-import multiprocessing
 import json
-from datetime import datetime, date, time
+from datetime import datetime
 from copy import deepcopy
-import hisatgenotype_typing_common as typing_common
-import hisatgenotype_assembly_graph as assembly_graph
-import hisatgenotype_validation_check as validation_check
+
+import hisatgenotype_modules.hisatgenotype_typing_common as typing_common
+import hisatgenotype_modules.hisatgenotype_assembly_graph as assembly_graph
+import hisatgenotype_modules.hisatgenotype_validation_check as validation_check
 
 """ Flag to turn on file debugging to run sanity checks """
 setting_file = '/'.join(os.path.realpath(__file__).split('/')[:-2])\
@@ -282,19 +281,19 @@ def typing(simulation,
            assembly_verbose,
            out_dir,
            dbversion,
+           core_fid = None,
            test_i = 0):
 
     complete     = {"Init Align"    : False,
                     "Locus Process" : False,
                     "Align Return"  : False} # list of completed tasks
     base_fname  = full_path_base_fname.split("/")[-1]
-    core_fid    = "" # May add to bottom of options
     report_base = '%s/%s-%s.' % (out_dir, output_base, base_fname)
     if simulation:
         test_passed  = {}
         core_fid     = str(test_i + 1)
         report_base += "test-"
-    else:
+    elif not core_fid:
         core_fid = '_'.join(read_fname[0].split('/')[-1].split('.')[:-1])
 
     report_base += core_fid
@@ -304,7 +303,7 @@ def typing(simulation,
         msg_out = [sys.stderr, report_file]
     else:
         msg_out = [report_file]
-    
+
     # Add version and command info to all report files
     version_dir = '/'.join(os.path.dirname(__file__).split('/')[:-1])
     hg_version  = open(version_dir + '/VERSION', 'r').read()
@@ -2010,7 +2009,7 @@ def typing(simulation,
                     for f_ in msg_out:
                         print("\n\n", file=f_)
 
-            # Identify alleles that perfectly or closesly match assembled alleles
+            # Identify alleles that perfectly or closely match assembled alleles
             fasta_dic  = {}
             contig_cnt = 0
             for node_name, node in asm_graph.nodes.items():
@@ -2159,12 +2158,10 @@ def typing(simulation,
 
     report_file.close()
 
-    # Check if all runs occured properly
+    # Check if all runs occurred properly
     for key, value in complete.items():
         if not value:
-            print("Error in running HISATgenotype: Incomplete %s" % key,
-                  file=sys.stderr)
-            exit(1)
+            raise ValueError("Error in running HISATgenotype: Incomplete %s" % key)
 
     if simulation:
         return test_passed
@@ -2304,7 +2301,8 @@ def genotyping_locus(base_fname,
                      verbose,
                      assembly_verbose,
                      out_dir,
-                     debug_instr):
+                     debug_instr,
+                     core_fid):
     assert isinstance(base_fname, basestring)
     assert not ',' in base_fname
     assert os.path.exists(ix_dir)
@@ -2392,11 +2390,7 @@ def genotyping_locus(base_fname,
 
     else:
         full_gg_path = ix_dir + "/" + base_fname
-
-        # Download human genome and HISAT2 index
         typing_common.clone_hisatgenotype_database(ix_dir)
-        typing_common.download_genome_and_index(ix_dir)  
-
         typing_common.extract_database_if_not_exists(base_fname,
                                                      only_locus_list,
                                                      ix_dir,
@@ -2414,7 +2408,7 @@ def genotyping_locus(base_fname,
         # Read alleles
         for line in open("%s.allele" % full_gg_path):
             alleles.add(line.strip())
-        
+
         # Read partial alleles
         for line in open("%s.partial" % full_gg_path):
             partial_alleles.add(line.strip())
@@ -2613,6 +2607,7 @@ def genotyping_locus(base_fname,
                                      assembly_verbose,
                                      out_dir,
                                      dbversion,
+                                     core_fid,
                                      test_i)
 
             didpass = False
@@ -2684,4 +2679,5 @@ def genotyping_locus(base_fname,
                verbose,
                assembly_verbose,
                out_dir,
-               dbversion)
+               dbversion,
+               core_fid)

@@ -21,13 +21,11 @@
 
 import sys
 import os
-import subprocess
-import re
 import random
-from argparse import ArgumentParser, FileType
-from hisatgenotype_typing_core import genotyping_locus
-import hisatgenotype_args as arguments
-import hisatgenotype_typing_core as typing_core
+from argparse import ArgumentParser
+
+import hisatgenotype_modules.hisatgenotype_args as arguments
+import hisatgenotype_modules.hisatgenotype_typing_core as typing_core
 
 # --------------------------------------------------------------------------- #
 # This is the Wrapper script that runs the core code found in                 #
@@ -187,5 +185,6 @@ if __name__ == '__main__':
                      args.verbose_level,
                      args.assembly_verbose,
                      args.out_dir,
-                     debug)
+                     debug,
+                     args.core_fid)
 
