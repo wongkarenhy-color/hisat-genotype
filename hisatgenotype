@@ -606,6 +606,8 @@ def typing_process(args):
                              args.verbose_level,
                              args.assembly_verbose,
                              args.out_dir,
+                             args.already_extract,
+                             args.core_fid,
                              debug)
     else:
         log = {} # build log to capture errors
@@ -659,6 +661,8 @@ def typing_process(args):
                             args.verbose_level,
                             args.assembly_verbose,
                             args.out_dir,
+                            args.already_extract,
+                            args.core_fid,
                             debug)
                     )
 
